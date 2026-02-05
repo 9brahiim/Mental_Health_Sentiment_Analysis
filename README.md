@@ -1,18 +1,29 @@
 # Mental Health Sentiment Analysis
 
-A machine learning project for sentiment analysis of mental health-related text using fine-tuned DistilBERT model.
+A machine learning project for sentiment analysis of mental health-related text using fine-tuned LLaMA 2 model.
 
 ## 📋 Overview
 
-This project trains a sentiment classification model on mental health text data using Hugging Face's Transformers library. The model is based on DistilBERT, a lighter and faster version of BERT, fine-tuned for mental health sentiment classification.
+This project trains a sentiment classification model on mental health text data using Hugging Face's Transformers library. The model is based on LLaMA 2 (7B chat), a powerful large language model fine-tuned for mental health sentiment classification.
 
 ## 🚀 Features
 
-- Fine-tuned DistilBERT model for mental health sentiment analysis
+- Fine-tuned LLaMA 2 model for mental health sentiment analysis
+- 4-bit quantization support for efficient memory usage
 - Interactive Streamlit web application
 - Support for multiple sentiment labels
 - Easy-to-use prediction interface
 - Works in both Google Colab and local environments
+
+## ⚠️ Prerequisites
+
+**Important:** LLaMA 2 requires:
+1. A Hugging Face account (sign up at https://huggingface.co)
+2. Access to LLaMA 2 model (request at https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)
+3. A Hugging Face token (create at https://huggingface.co/settings/tokens)
+4. **GPU with at least 16GB VRAM** (recommended for training)
+5. For Google Colab: Add your HF token as a secret named `HF_TOKEN`
+6. For local: Set `HF_TOKEN` environment variable or use `huggingface-cli login`
 
 ## 📦 Installation
 
@@ -101,19 +112,24 @@ Mental_Health_Sentiment_Analysis/
 
 ## 🔧 Model Details
 
-- **Base Model**: `distilbert-base-uncased`
+- **Base Model**: `NousResearch/Llama-2-7b-chat-hf`
 - **Task**: Sequence Classification
 - **Number of Labels**: 12 (varies based on dataset)
 - **Max Sequence Length**: 256 tokens
 - **Training Epochs**: 3
-- **Batch Size**: 8
+- **Batch Size**: 2 (with gradient accumulation = 8 effective)
+- **Quantization**: 4-bit (NF4) for memory efficiency
+- **Mixed Precision**: FP16 enabled
 
 ## 📝 Notes
 
 - The model works best with mental health-related text
-- Training requires a GPU for reasonable performance (recommended for Colab)
+- **Training requires a GPU with at least 16GB VRAM** (highly recommended)
+- LLaMA 2 is much larger than DistilBERT - training will take significantly longer
+- 4-bit quantization is used to reduce memory requirements
 - The dataset path is automatically detected (Colab vs local environment)
 - Label mapping is saved with the model for easy inference
+- Make sure you have accepted the LLaMA 2 license on Hugging Face before running
 
 ## 🤝 Contributing
 
