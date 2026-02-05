@@ -145,6 +145,3 @@ This project is open source and available under the MIT License.
 - The creators of the RMHD dataset
 - DistilBERT model developers
 
-## ⚠️ Disclaimer
-
-This model is for educational and research purposes only. It should not be used as a substitute for professional mental health advice or diagnosis.
